@@ -1,3 +1,20 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+// Configuração do Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAqj8mEnfKY0pgEQY-rnvcFneolyVrYYvw",
+  authDomain: "quiz-coren-ba.firebaseapp.com",
+  projectId: "quiz-coren-ba",
+  storageBucket: "quiz-coren-ba.firebasestorage.app",
+  messagingSenderId: "929619546750",
+  appId: "1:929619546750:web:c7bdb30ef28a903456fe2f"
+};
+
+// Inicializa Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 // Navegação por abas (se existir)
 document.querySelectorAll(".tab-button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -347,7 +364,22 @@ if (restartBtn) {
   });
 }
 
-// --- Leaderboard / Persistência (localStorage) ---
+// --- Leaderboard / Persistência (Firebase + Local Storage Fallback) ---
+async function fetchLeaderboard() {
+  try {
+    const q = query(collection(db, "leaderboard"), orderBy("score", "desc"), orderBy("date", "desc"), limit(10));
+    const querySnapshot = await getDocs(q);
+    const serverBoard = [];
+    querySnapshot.forEach((doc) => serverBoard.push(doc.data()));
+    window.LAST_LEADERBOARD_ERROR = null; // Sucesso
+    return serverBoard;
+  } catch (e) {
+    console.warn("Erro ao buscar do Firebase, usando local:", e);
+    window.LAST_LEADERBOARD_ERROR = e.message;
+    return getLeaderboard();
+  }
+}
+
 function getLeaderboard() {
   try {
     const raw = localStorage.getItem("quiz_leaderboard");
@@ -359,25 +391,46 @@ function getLeaderboard() {
 }
 
 async function saveScoreToLeaderboard(name, sector, score) {
-  if (!name || !sector) return getLeaderboard();
-  const entry = { name: name.trim(), sector: sector.trim(), score: Number(score), date: new Date().toISOString() };
+  if (!name || !sector) return fetchLeaderboard();
+  const entry = {
+    name: name.trim(),
+    sector: sector.trim(),
+    score: Number(score),
+    date: new Date().toISOString()
+  };
 
+  // 1. Tentar salvar no Firebase
+  try {
+    await addDoc(collection(db, "leaderboard"), {
+      ...entry,
+      date: serverTimestamp() // Usa o tempo do servidor Firebase para precisão
+    });
+    console.log("Score salvo no Firebase!");
+  } catch (e) {
+    console.error("Erro ao salvar no Firebase, gravando apenas localmente:", e);
+  }
+
+  // 2. Sempre mantém uma cópia local para redundância
   const board = getLeaderboard();
   board.push(entry);
   board.sort((a, b) => b.score - a.score || new Date(b.date) - new Date(a.date));
   try {
-    localStorage.setItem("quiz_leaderboard", JSON.stringify(board));
+    localStorage.setItem("quiz_leaderboard", JSON.stringify(board.slice(0, 10)));
   } catch (e) {
-    console.error("Erro ao salvar leaderboard local:", e);
+    console.error("Erro ao salvar local:", e);
   }
-  return board;
+
+  // 3. Retorna a lista atualizada (preferencialmente do servidor)
+  return fetchLeaderboard();
 }
 
-function renderLeaderboard(list) {
+async function renderLeaderboard(list) {
+  // Se não passou lista, busca na hora
+  const items = list || await fetchLeaderboard();
   if (!leaderboardList || !leaderboardDiv) return;
-  console.log('renderLeaderboard called. items passed:', Array.isArray(list) ? list.length : 'null');
+  console.log('renderLeaderboard called. items:', Array.isArray(items) ? items.length : 'null');
   leaderboardList.innerHTML = "";
-  const top = (list || getLeaderboard()).slice(0, 10);
+  const top = items.slice(0, 10);
   // remove existing header if present to avoid duplicates
   const parent = leaderboardList.parentNode;
   if (parent) {
