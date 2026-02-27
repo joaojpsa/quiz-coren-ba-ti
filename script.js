@@ -50,27 +50,9 @@ const playerMsg = document.getElementById("player-msg");
 const progressEl = document.getElementById("progress");
 const leaderboardDiv = document.getElementById("leaderboard");
 const leaderboardList = document.getElementById("leaderboard-list");
-// A URL da API pode ser configurada de 3 formas (ordem de prioridade):
-// 1) meta tag no HTML: <meta name="quiz-api-url" content="https://meu-servidor.com">
-// 2) objeto global: window.QUIZ_CONFIG = { apiUrl: 'https://meu-servidor.com' }
-// 3) variável global simples: window.API_URL = 'https://meu-servidor.com'
-// Se nenhuma for fornecida, fica vazia e o código usa localStorage como fallback.
-const API_URL = (function () {
-  try {
-    const meta = document.querySelector('meta[name="quiz-api-url"]');
-    if (meta && meta.content) return meta.content.trim();
-  } catch (e) {
-    // ignore
-  }
-  try {
-    if (window && window.QUIZ_CONFIG && window.QUIZ_CONFIG.apiUrl)
-      return window.QUIZ_CONFIG.apiUrl;
-  } catch (e) {}
-  try {
-    if (window && window.API_URL) return window.API_URL;
-  } catch (e) {}
-  return "";
-})();
+const manualLinkContainer = document.getElementById("manual-link-container");
+// A aplicação é 100% estática agora, salva apenas no localStorage
+const API_URL = "";
 let currentIndex = 0;
 let quizStarted = false;
 let playerName = "";
@@ -99,9 +81,8 @@ function showQuestion(index) {
   // atualiza progresso
   if (progressEl) {
     progressEl.style.display = quizStarted ? "block" : "none";
-    progressEl.textContent = `Pergunta ${currentIndex + 1} de ${
-      questions.length
-    }`;
+    progressEl.textContent = `Pergunta ${currentIndex + 1} de ${questions.length
+      }`;
   }
 }
 
@@ -148,7 +129,7 @@ if (startBtn) {
   startBtn.addEventListener("click", () => {
     const name = playerNameInput ? playerNameInput.value.trim() : "";
     const sector = playerSectorInput ? playerSectorInput.value.trim() : "";
-    
+
     // Validação melhorada
     if (!name || !sector) {
       showPlayerMessage(
@@ -158,7 +139,7 @@ if (startBtn) {
       else if (playerSectorInput && !sector) playerSectorInput.focus();
       return;
     }
-    
+
     // Validação de tamanho máximo (100 caracteres)
     if (name.length > 100 || sector.length > 100) {
       showPlayerMessage(
@@ -166,18 +147,18 @@ if (startBtn) {
       );
       return;
     }
-    
+
     // Sanitização básica (remover caracteres perigosos)
     const sanitizedName = name.replace(/[<>]/g, '');
     const sanitizedSector = sector.replace(/[<>]/g, '');
-    
+
     if (sanitizedName !== name || sanitizedSector !== sector) {
       showPlayerMessage(
         "Nome e setor não podem conter os caracteres < ou >."
       );
       return;
     }
-    
+
     playerName = sanitizedName;
     playerSector = sanitizedSector;
     quizStarted = true;
@@ -185,6 +166,7 @@ if (startBtn) {
     if (playerForm) playerForm.style.display = "none";
     if (quizControls) quizControls.style.display = "flex";
     if (progressEl) progressEl.style.display = "block";
+    if (manualLinkContainer) manualLinkContainer.style.display = "none";
     showQuestion(0);
   });
 }
@@ -254,8 +236,6 @@ if (checkBtn) {
         '.quiz-option[data-correct="true"]'
       );
       if (correctOpt) {
-        correctOpt.classList.add("correct");
-        // extrai letra e texto da opção correta
         const strong = correctOpt.querySelector("strong");
         const letter = strong ? strong.textContent.trim() : "";
         const text = correctOpt.textContent.replace(letter, "").trim();
@@ -314,24 +294,19 @@ if (checkBtn) {
         resultText.textContent = `Você acertou ${totalScore} de ${questions.length} perguntas.`;
         // mostrar resultado
         quizResult.style.display = "block";
-        // salvar entrada no leaderboard usando nome/setor fornecidos (tenta servidor, senão localStorage)
+        // salvar entrada no leaderboard
         let savedList = null;
         if (playerName && playerSector) {
           savedList = await saveScoreToLeaderboard(playerName, playerSector, totalScore);
         }
-        // tentar obter versão mais atualizada do servidor quando disponível
-        let latest = null;
-        if (API_URL) {
-          latest = await fetchLeaderboardFromServer();
-        }
-        // renderiza leaderboard: preferir latest (servidor), depois savedList (retorno da função), depois local
-        if (latest && Array.isArray(latest)) {
-          renderLeaderboard(latest);
-        } else if (savedList && Array.isArray(savedList)) {
+
+        // renderiza leaderboard do localStorage
+        if (savedList && Array.isArray(savedList)) {
           renderLeaderboard(savedList);
         } else {
           renderLeaderboard();
         }
+        if (manualLinkContainer) manualLinkContainer.style.display = "block";
         quizResult.scrollIntoView({ behavior: "smooth" });
       }
     }
@@ -362,6 +337,7 @@ if (restartBtn) {
     if (playerForm) playerForm.style.display = "flex";
     if (playerNameInput) playerNameInput.value = "";
     if (playerSectorInput) playerSectorInput.value = "";
+    if (manualLinkContainer) manualLinkContainer.style.display = "block";
     playerName = "";
     playerSector = "";
     quizStarted = false;
@@ -382,61 +358,10 @@ function getLeaderboard() {
   }
 }
 
-async function fetchLeaderboardFromServer() {
-  if (!API_URL) return null;
-  try {
-    const res = await fetch(`${API_URL.replace(/\/$/, "")}/leaderboard`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const list = await res.json();
-    // clear previous error flag
-    try { delete window.LAST_LEADERBOARD_ERROR; } catch (e) {}
-    return list;
-  } catch (e) {
-    console.warn("Não foi possível buscar leaderboard do servidor:", e);
-    try { window.LAST_LEADERBOARD_ERROR = e.message || String(e); } catch (err) {}
-    return null;
-  }
-}
-
-async function saveScoreToServer(entry) {
-  if (!API_URL) return null;
-  try {
-    const res = await fetch(`${API_URL.replace(/\/$/, "")}/leaderboard`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(entry),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const list = await res.json();
-    try { delete window.LAST_LEADERBOARD_ERROR; } catch (e) {}
-    return list;
-  } catch (e) {
-    console.warn("Erro ao salvar no servidor:", e);
-    try { window.LAST_LEADERBOARD_ERROR = e.message || String(e); } catch (err) {}
-    return null;
-  }
-}
-
-// salva no servidor se API_URL configurada, caso contrário usa localStorage
 async function saveScoreToLeaderboard(name, sector, score) {
   if (!name || !sector) return getLeaderboard();
   const entry = { name: name.trim(), sector: sector.trim(), score: Number(score), date: new Date().toISOString() };
 
-  if (API_URL) {
-    const serverList = await saveScoreToServer(entry);
-    if (serverList) {
-      // armazena também localmente para fallback/offline
-      try {
-        localStorage.setItem("quiz_leaderboard", JSON.stringify(serverList));
-      } catch (e) {
-        console.warn("Não foi possível salvar cópia local do leaderboard:", e);
-      }
-      return serverList;
-    }
-    // se falhou no servidor, cai para local
-  }
-
-  // fallback: localStorage
   const board = getLeaderboard();
   board.push(entry);
   board.sort((a, b) => b.score - a.score || new Date(b.date) - new Date(a.date));
