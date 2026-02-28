@@ -52,8 +52,14 @@ if (backToTopButton) {
   });
 }
 
-// --- Quiz: uma questão por vez ---
-const questions = Array.from(document.querySelectorAll(".quiz-question"));
+// A aplicação é 100% estática agora, salva apenas no localStorage
+const API_URL = "";
+let questions = []; // Antigamente era Array.from(document.querySelectorAll(".quiz-question"))
+let currentIndex = 0;
+let quizStarted = false;
+let playerName = "";
+let playerSector = "";
+
 const prevBtn = document.getElementById("prev-question");
 const nextBtn = document.getElementById("next-question");
 const checkBtn = document.getElementById("check-answers");
@@ -68,12 +74,76 @@ const progressEl = document.getElementById("progress");
 const leaderboardDiv = document.getElementById("leaderboard");
 const leaderboardList = document.getElementById("leaderboard-list");
 const manualLinkContainer = document.getElementById("manual-link-container");
-// A aplicação é 100% estática agora, salva apenas no localStorage
-const API_URL = "";
-let currentIndex = 0;
-let quizStarted = false;
-let playerName = "";
-let playerSector = "";
+const questionsContainer = document.getElementById("questions-container");
+
+async function loadQuestions() {
+  try {
+    const response = await fetch('questions.json');
+    if (!response.ok) throw new Error('Não foi possível carregar o arquivo de perguntas.');
+    const data = await response.json();
+    renderQuestions(data);
+    questions = Array.from(document.querySelectorAll(".quiz-question"));
+    showQuestion(0);
+  } catch (error) {
+    console.error('Erro ao carregar perguntas:', error);
+    if (questionsContainer) {
+      questionsContainer.innerHTML = `
+        <div class="error-msg">
+          <h3>⚠️ Erro ao carregar o Quiz</h3>
+          <p>Não foi possível carregar as perguntas. Isso geralmente acontece por um destes motivos:</p>
+          <ul>
+            <li>Você abriu o arquivo <strong>index.html</strong> diretamente no navegador (via <code>file://</code>).</li>
+            <li>O arquivo <strong>questions.json</strong> está faltando ou corrompido.</li>
+          </ul>
+          <p><strong>Solução:</strong> Use um servidor local (como <em>Live Server</em> ou <code>python -m http.server</code>) ou acesse via link de hospedagem.</p>
+        </div>
+      `;
+    }
+  }
+}
+
+function renderQuestions(data) {
+  if (!questionsContainer) return;
+  questionsContainer.innerHTML = "";
+  data.forEach((q, idx) => {
+    const questionDiv = document.createElement("div");
+    questionDiv.className = "quiz-question";
+    questionDiv.dataset.explanation = q.explanation;
+    questionDiv.dataset.source = q.source;
+    questionDiv.style.display = "none";
+
+    const h3 = document.createElement("h3");
+    h3.textContent = q.question;
+    questionDiv.appendChild(h3);
+
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "quiz-options";
+
+    q.options.forEach(opt => {
+      const optionDiv = document.createElement("div");
+      optionDiv.className = "quiz-option";
+      optionDiv.dataset.correct = opt.correct;
+      optionDiv.innerHTML = `<strong>${opt.letter})</strong> ${opt.text}`;
+
+      // Adiciona o listener de clique que estava no escopo global
+      optionDiv.addEventListener("click", () => {
+        if (!quizStarted) {
+          showPlayerMessage(
+            "Por favor, preencha seu nome e setor e clique em Começar antes de responder."
+          );
+          return;
+        }
+        questionDiv.querySelectorAll(".quiz-option").forEach((opt) => opt.classList.remove("selected"));
+        optionDiv.classList.add("selected");
+      });
+
+      optionsDiv.appendChild(optionDiv);
+    });
+
+    questionDiv.appendChild(optionsDiv);
+    questionsContainer.appendChild(questionDiv);
+  });
+}
 
 function showQuestion(index) {
   if (questions.length === 0) return;
@@ -103,31 +173,15 @@ function showQuestion(index) {
   }
 }
 
-// Inicializa exibição
-showQuestion(0);
+// Inicializa carregamento
+loadQuestions();
 
 // esconder controles até o usuário iniciar
 if (quizControls) quizControls.style.display = "none";
 if (progressEl) progressEl.style.display = "none";
 if (leaderboardDiv) leaderboardDiv.style.display = "none";
 
-// Seleção de opção (escopo por pergunta)
-document.querySelectorAll(".quiz-option").forEach((option) => {
-  option.addEventListener("click", () => {
-    if (!quizStarted) {
-      showPlayerMessage(
-        "Por favor, preencha seu nome e setor e clique em Começar antes de responder."
-      );
-      return;
-    }
-    const parentQuestion = option.closest(".quiz-question");
-    if (!parentQuestion) return;
-    parentQuestion
-      .querySelectorAll(".quiz-option")
-      .forEach((opt) => opt.classList.remove("selected"));
-    option.classList.add("selected");
-  });
-});
+// Seleção de opção removida daqui e movida para o renderQuestions para lidar com elementos dinâmicos
 
 // Iniciar quiz após preencher nome/setor
 function showPlayerMessage(text) {

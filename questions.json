@@ -1,0 +1,704 @@
+[
+  {
+    "question": "1. Ao encerrar o uso do computador, qual é o procedimento correto\n            para desligá-lo?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Desligar diretamente pelo botão físico.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Fechar os programas e clicar em Iniciar e\n              depois “Desligar”",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Desligar diretamente na fonte de\n              alimentação.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Deixar ligado, pois o sistema desliga\n              automaticamente.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Ao fechar os programas e clicar em Iniciar - Desligar, o sistema salva configurações, finaliza processos e desliga o hardware corretamente, evitando perda de dados e danos ao sistema operacional. Já o botão físico ou a fonte interrompem a energia de forma brusca, o que pode corromper arquivos ou prejudicar o disco.",
+    "source": "Fonte: Valente - Soluções em Informática — https://valentesolucoes.com.br/artigo/8-guia-definitivo-como-desligar-seu-windows-10-ou-11-corretamente-e-evitar-problemas"
+  },
+  {
+    "question": "2. Se o pacote Office não estiver funcionando, o que o usuário\n            pode fazer?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Abrir um chamado no GLPI para o suporte de\n              TI.",
+        "correct": true
+      },
+      {
+        "letter": "B",
+        "text": "Fechar e abrir novamente o pacote office.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Desinstalar o programa manualmente.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Utilizar apenas o bloco de notas.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Somente o Departamento de TI tem permissão para diagnosticar, reistalar ou corrigir o software. Abrir um chamado no GLPI garante que o problema seja registrado e tratado por profissionais qualificados, evitando tentativas inadequadas que podem agravar a situação.",
+    "source": "Fonte: https://flooti.com.br/abertura-de-chamado/"
+  },
+  {
+    "question": "3. Qual é uma boa prática no uso do e-mail corporativo?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Guardar todas as mensagens na caixa de\n              entrada.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Apagar os e-mails antigos sem verificar o\n              conteúdo.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Criar pastas ou marcadores para arquivar\n              mensagens importantes.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Ignorar e-mails recebidos.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Criar pastas para arquivar mensagens importantes permite encontrar informações rapidamente, evitar acúmulo desnecessário na caixa de entrada e manter o trabalho mais produtivo e organizado.",
+    "source": "Fonte: DECOPROteste - https://www.deco.proteste.pt/tecnologia/computadores/dicas/como-organizar-caixa-email"
+  },
+  {
+    "question": "4. Onde é o local mais adequado para guardar documentos de\n            trabalho?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Na área de trabalho, para acesso rápido.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Em qualquer pasta disponível.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Nas pastas de rede disponibilizadas à você\n              para seu setor.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Em pendrives pessoais.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: As pastas de rede são seguras, organizadas e fazem parte do sistema de backup da empresa, garantindo que os arquivos fiquem protegidos.",
+    "source": "Fonte: Acess https://www.accesscorp.com/pt-br/blog/11-dicas-para-organizar-arquivos-digitais/"
+  },
+  {
+    "question": "5. O que deve ser feito para facilitar o acesso a sites\n            importantes, como o de ponto ou planilhas corporativas?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Memorizar os endereços.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Anotar os links em um caderno.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Buscar o site manualmente todos os dias.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Salvar as páginas nos favoritos do\n              navegador.",
+        "correct": true
+      }
+    ],
+    "explanation": "Explicação: Ao adicionar um site aos favoritos, ele fica armazenado no navegador e pode ser acessado com um clique, sem precisar digitar o endereço ou procurar novamente.",
+    "source": "Fonte: Firefox\nhttps://www.firefox.com/pt-BR/features/bookmarks/"
+  },
+  {
+    "question": "6. Quais são os cuidados necessários ao transportar notebooks e\n            periféricos?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Guardá-los em qualquer bolsa disponível.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Transportá-los sem capa para facilitar o\n              acesso.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Quando disponível utilizar maletas, evitar\n              impactos, umidade e temperaturas extremas.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Deixá-los dentro do carro sob o sol para não\n              carregar peso.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Usar maletas adequadas, evitar impactos, umidade e temperaturas extremas ajuda a proteger os equipamentos contra quedas, infiltração de líquidos e superaquecimento.",
+    "source": "Fonte: Asus\nhttps://www.asus.com/mx/content/how-to-protect-your-laptop-while-traveling-or-commuting/"
+  },
+  {
+    "question": "7. A responsabilidade pelo equipamento emprestado é:",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Pessoal e intransferível, cabendo ao usuário\n              zelar pelo bem.",
+        "correct": true
+      },
+      {
+        "letter": "B",
+        "text": "Compartilhada entre todos os colaboradores.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Da equipe de TI que fez o empréstimo.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Da empresa, independentemente do uso.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Quem utiliza o equipamento é responsável por evitar danos, perda ou mau uso, já que o item foi entregue sob sua guarda.",
+    "source": ""
+  },
+  {
+    "question": "8. O que o colaborador deve fazer ao receber o notebook\n            emprestado pela primeira vez?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Apenas testá-lo e iniciar o uso",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Assinar o Termo de Posse, reconhecendo sua\n              responsabilidade.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Fazer seu primeiro acesso na SEDE e assinar\n              o termo de posse.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Alterar a configuração para o modo pessoal.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: O primeiro acesso ao notebook deve ser feito na rede da empresa para garantir que o equipamento seja registrado e configurado corretamente no ambiente corporativo. O notebook recebe automaticamente as políticas de segurança da empresa, incluindo permissões de acesso a pastas de rede.",
+    "source": ""
+  },
+  {
+    "question": "9. O que são softwares de acesso remoto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Programas usados apenas para\n              videoconferência.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Ferramentas que permitem acessar e controlar\n              outro computador à distância.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Aplicativos para compartilhamento de arquivos\n              na nuvem.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Sistemas para atualizar automaticamente o\n              computador.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Eles são usados principalmente em suporte técnico permitindo abrir programas, transferir arquivos e resolver problemas sem estar fisicamente no computador.",
+    "source": "Fonte: Techtudo - https://www.techtudo.com.br/listas/2023/07/quer-controlar-seu-pc-a-distancia-veja-5-programas-de-acesso-remoto-edsoftwares.ghtml\n"
+  },
+  {
+    "question": "10. Quando um técnico precisa acessar seu computador, o que você\n            deve fazer?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Permitir o acesso automaticamente sem\n              verificar quem é.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Fornecer o ID ou patrimônio do equipamento\n              correto ao profissional autorizado de TI.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Desativar o antivírus antes de permitir o\n              acesso.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Enviar sua senha de login junto com o ID.",
+        "correct": false
+      }
+    ],
+    "explanation": "",
+    "source": ""
+  },
+  {
+    "question": "11. Quais são exemplos de softwares de acesso remoto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Zoom, Teams e Skype.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "RustDesk, AnyDesk e TVNC.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Excel, Word e PowerPoint.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Google Chrome, Edge e Firefox.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: RustDesk, AnyDesk e TVNC são exemplos de softwares de acesso remoto, que permitem controlar outro computador à distância.",
+    "source": "Fonte: Techtudo\nhttps://www.techtudo.com.br/listas/2023/07/quer-controlar-seu-pc-a-distancia-veja-5-programas-de-acesso-remoto-edsoftwares.ghtml"
+  },
+  {
+    "question": "12. Qual é o principal objetivo do SPARK como ferramenta?\n            Alternativas:",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Substituir todos os e-mails e reuniões\n              presenciais.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Gerenciar e armazenar todos os documentos\n              oficiais da empresa.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Ser uma ferramenta de uso opcional para\n              comunicação informal entre departamentos.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Facilitar a troca de informações entre\n              colaboradores.",
+        "correct": true
+      }
+    ],
+    "explanation": "Explicação: O SPARK funciona como uma plataforma de comunicação interna, permitindo que equipes compartilhem mensagens, arquivos e atualizações, melhorando a colaboração e a produtividade dentro da empresa.",
+    "source": "Fonte: Ignite realtime - https://igniterealtime.org/projects/spark/"
+  },
+  {
+    "question": "13. O SPARK deve ser utilizado para tratar de quais tipos de\n            assunto?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Assuntos pessoais e familiares para criar um\n              ambiente mais descontraído.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Qualquer tipo de assunto, desde que a\n              conversa seja em grupo.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Exclusivamente para assuntos relacionados ao\n              ambiente de trabalho.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Principalmente para comunicados oficiais da\n              diretoria.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: A ferramenta é destinada a comunicação profissional entre colaboradores, garantindo que as informações compartilhadas sejam relevantes, seguras e organizadas para o contexto da empresa.",
+    "source": "Fonte: Ignite realtime - https://igniterealtime.org/projects/spark/"
+  },
+  {
+    "question": "14. Por que é fundamental que o colaborador abra o SPARK ao\n            iniciar o expediente?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Para registrar seu horário de entrada\n              automaticamente.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Para garantir que esteja disponível para\n              receber comunicados, solicitações e instruções da equipe ou\n              liderança.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Porque o uso da ferramenta é monitorado e\n              contabilizado como produtividade.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Para evitar o recebimento de mensagens fora\n              do horário comercial.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: É fundamental abrir o SPARK ao iniciar o expediente para que o colaborador fique disponível e acessível à equipe e à liderança, garantindo o recebimento de comunicados, solicitações e instruções de trabalho em tempo hábil.",
+    "source": "Fonte: Ignite realtime - https://igniterealtime.org/projects/spark/"
+  },
+  {
+    "question": "15. Qual endereço utilizamos para acessar o site de criar\n            chamados?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "suporte.coren-ba.gov.br",
+        "correct": true
+      },
+      {
+        "letter": "B",
+        "text": "chamados.coren.gov.br",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "coren-ba.gov.br",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "ti.coren.gov.br",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: O endereço correto para acessar a plataforma de abertura chamados GLPI para o Departamento de TI é suporte.coren-ba.gov.br.",
+    "source": "Fonte: Departamento de TI"
+  },
+  {
+    "question": "16. Ao criar o chamado, por que é importante selecionar a\n            categoria correta (ex: \"Problemas de rede\", \"E-mail\", \"Hardware\")?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Porque ajuda o técnico compreender qual é o\n              problema.",
+        "correct": true
+      },
+      {
+        "letter": "B",
+        "text": "Porque deixa o chamado mais bonito.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Porque é obrigatório, mas não influencia em\n              nada.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Porque aumenta a prioridade automaticamente.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Selecionar a categoria correta ajuda o técnico a entender rapidamente o tipo de problema, facilitando o encaminhamento e a solução mais eficiente do chamado.",
+    "source": "Fonte: Departamento de TI"
+  },
+  {
+    "question": "17. Qual destino deve ser selecionado na hora de imprimir?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Impressora padrão.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "SEDE em dionísio.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Rede corporativa.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Departamento de TI.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: O destino correto para ser selecionado na impressão é “SEDE em dionísio”, esse é o servidor de impressão ativo da instituição. Após selecioná-lo, a impressão vai para a fila de impressão.",
+    "source": "Fonte: Departamento de TI"
+  },
+  {
+    "question": "18. A digitalização feita na impressora multifuncional é enviada para qual destino?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Para o e-mail do usuário.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Para a pasta de rede do departamento.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Para o computador local.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Para o servidor do Coren.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: A digitalização feita é enviada para a pasta de rede do departamento selecionado no menu da impressora “Config. rápidas”. A pasta de rede pode ser acessada em “Este Computador” e no servidor de arquivos do setor em “Documentos Digitalizados”.",
+    "source": "Fonte: Departamento de TI"
+  },
+  {
+    "question": "19. O que o usuário deve fazer para o documento digitalizado não sair escala de cinza?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Quando for digitalizar o documento clicar em “Opções - Cor/Preto - Colorido”.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Quando for digitalizar o documento clicar em “Opções - Modo de Digitalização”.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Quando for digitalizar o documento clicar em “Opções - Ajuste de Imagem”.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Quando for digitalizar o documento clicar em “Opções - Tipo de Resolução de arquivo”.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Para alterar a escala de cinza para colorido o usuário deve selecionar “Opções - Cor/Preto - Colorido”, dessa forma é alterado a cor da digitalização.",
+    "source": "Fonte: Departamento de TI"
+  },
+  {
+    "question": "20. Para enviar uma digitalização, o que deve ser selecionado na impressora?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "“Copiar”.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "“Imprimir”.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "“Config. rápidas”.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "“Arquivos recentes”.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Deve ser selecionado “Config. rápidas” no menu inicial da impressora, dessa forma, o usuário é direcionado para o local das pastas da rede dos departamentos.",
+    "source": "Fonte: Departamento de TI"
+  },
+  {
+    "question": "21. O que o usuário deve fazer para solicitar um material no SIALM?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Ligar diretamente para o almoxarifado.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Enviar um e-mail para o setor de compras.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Fazer uma solicitação digital no sistema, informando o item e a quantidade desejada.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Esperar o técnico repor automaticamente.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: O usuário deve acessar o seguinte endereço para ter acesso ao SIALM “https://coren-ba.implanta.net.br/”, selecionar “ÁREA MEIO” e “ALMOXARIFADO” e digitar o usuário e senha.",
+    "source": "Fonte: https://implanta.net.br/solucoes/sialm/"
+  },
+  {
+    "question": "22. Qual é a melhor prática para criar uma senha forte?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Usar apenas o nome e a data de nascimento",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Combinar letras maiúsculas, minúsculas, números e símbolos",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Repetir a mesma senha em todas as contas",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Escolher uma senha curta e fácil de lembrar",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: A melhor prática é combinar letras maiúsculas, minúsculas, números e símbolos, pois isso aumenta a complexidade da senha, tornando-a mais difícil de ser descoberta por invasores e garantindo maior segurança das contas.",
+    "source": "Fonte: Agência de Defesa Cibernética dos Estados Unidos https://www.cisa.gov/secure-our-world/use-strong-passwords?utm_source=chatgpt.com"
+  },
+  {
+    "question": "23. O que é autenticação em dois fatores (2FA)?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Um tipo de antivírus",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Um método para lembrar senhas automaticamente",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Uma segunda etapa de verificação, como um código enviado por SMS ou aplicativo\n              autenticador",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Um sistema que bloqueia o uso de senhas longas",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: A autenticação em dois fatores é uma camada extra de segurança que exige uma segunda verificação, como um código enviado por SMS ou aplicativo autenticador, garantindo que apenas o usuário autorizado consiga acessar a conta.",
+    "source": "Fonte: Microsoft https://www.microsoft.com/en-us/security/business/security-101/what-is-two-factor-authentication-2fa?utm_source=chatgpt.com"
+  },
+  {
+    "question": "24. O que é phishing?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Um tipo de vírus que apaga arquivos.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Uma técnica de enganar o usuário para obter informações sigilosas.",
+        "correct": true
+      },
+      {
+        "letter": "C",
+        "text": "Um programa que protege o computador contra invasões.",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Um erro de sistema causado por e-mails antigos.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: O phishing é uma técnica usada por criminosos para enganar o usuário e roubar informações sigilosas, como senhas, dados bancários ou pessoais, geralmente por meio de e-mails, mensagens ou sites falsos que imitam empresas legítimas.",
+    "source": "Fonte: IBM https://www.ibm.com/br-pt/think/topics/phishing"
+  },
+  {
+    "question": "25. O que é malware?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Um software que protege o sistema.",
+        "correct": false
+      },
+      {
+        "letter": "B",
+        "text": "Um erro de hardware.",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Qualquer software malicioso projetado para causar danos ou roubar informações.",
+        "correct": true
+      },
+      {
+        "letter": "D",
+        "text": "Um tipo de firewall.",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: A palavra malware vem de malicious software (software malicioso).Ele inclui vírus, trojans, worms, ransomwares, spywares e outros programas prejudiciais. Seu objetivo é prejudicar o usuário ou o sistema, diferentemente de softwares legítimos, que buscam proteger ou otimizar o funcionamento do computador.",
+    "source": "Fonte: IBM https://www.ibm.com/br-pt/think/topics/malware"
+  },
+  {
+    "question": "26. O que deve ser evitado ao lidar com informações corporativas?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Compartilhar informações sem autorização",
+        "correct": true
+      },
+      {
+        "letter": "B",
+        "text": "Seguir as políticas de segurança da empresa",
+        "correct": false
+      },
+      {
+        "letter": "C",
+        "text": "Utilizar os dados apenas para fins legítimos",
+        "correct": false
+      },
+      {
+        "letter": "D",
+        "text": "Solicitar autorização antes de repassar informações",
+        "correct": false
+      }
+    ],
+    "explanation": "Explicação: Ao lidar com informações corporativas, deve-se evitar compartilhar dados sem autorização, pois isso pode comprometer a segurança da empresa, expor informações sensíveis e gerar riscos legais ou financeiros.",
+    "source": "Fonte: exabeam https://www.exabeam.com/explainers/information-security/the-12-elements-of-an-information-security-policy/"
+  }
+]
