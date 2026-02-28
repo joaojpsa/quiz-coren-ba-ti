@@ -1,131 +1,122 @@
-# Quiz — Guia de Uso Responsável da Tecnologia
+# 🎓 Quiz — Guia de Uso Responsável da Tecnologia
 
-Uma aplicação web estática e interativa desenvolvida para avaliar e treinar conhecimentos sobre o uso responsável de equipamentos e softwares corporativos. O sistema consiste em um quiz com 26 questões sobre boas práticas de tecnologia, com sistema de pontuação e ranking local.
+Bem-vindo à documentação oficial do **Quiz Interativo do Coren-BA**. Esta aplicação foi desenvolvida com o objetivo de conscientizar e educar colaboradores sobre as melhores práticas de uso de ativos tecnológicos corporativos, segurança cibernética e conformidade com as diretrizes internas.
 
----
-
-## 📋 Índice
-
-1. [Descrição da Aplicação](#descrição-da-aplicação)
-2. [Tutorial de Uso para o Usuário Final](#tutorial-de-uso-para-o-usuário-final)
-3. [Como Executar e Hospedar](#como-executar-e-hospedar)
-4. [Estrutura do Projeto](#estrutura-do-projeto)
+Este documento funciona como um guia completo de engenharia, implementação e uso, servindo tanto para administradores de TI quanto para desenvolvedores que desejam estender as funcionalidades do sistema.
 
 ---
 
-## 📖 Descrição da Aplicação
+## 🏗️ 1. Engenharia de Software e Paradigmas
 
-### O que é?
+A arquitetura deste projeto não foi apenas "codificada", mas sim **planejada** para resolver problemas comuns de manutenção em aplicações estáticas.
 
-O **Quiz — Guia de Uso Responsável da Tecnologia** é uma aplicação web educativa desenvolvida para o **Coren-BA** (Conselho Regional de Enfermagem da Bahia). A aplicação permite que colaboradores testem seus conhecimentos sobre:
+### A. Princípio da Separação de Preocupações (Separation of Concerns - SoC)
+Dividimos a aplicação em três camadas lógicas que se comunicam de forma harmoniosa:
 
-- Uso correto de equipamentos de informática
-- Boas práticas de segurança digital
-- Procedimentos corporativos (GLPI, SPARK, SIALM)
-- Políticas de uso de tecnologia
-- Cuidados com equipamentos emprestados
+1.  **Camada de Dados (External Data Layer)**: 
+    - Representada pelo arquivo `questions.json`.
+    - **Por que fizemos isso?** Antigamente, as perguntas estavam "hardcoded" no HTML. Isso tornava o arquivo `index.html` gigante (600+ linhas) e difícil de editar. Agora, o conteúdo está isolado. Mudar uma vírgula em uma pergunta não exige mexer na estrutura do site.
+    
+2.  **Camada de Lógica (Logic Layer)**:
+    - Centralizada no arquivo `script.js`.
+    - Implementa o **Padrão de Singleton de Estado**, onde o JavaScript controla a vida útil da sessão do usuário, desde a validação do formulário inicial até o cálculo final de desempenho.
+    - Utiliza o paradigma de **Programação Assíncrona** (Async/Await) para garantir que o quiz não comece antes dos dados serem carregados.
 
-### Funcionalidades Principais
+3.  **Camada de Apresentação (UI Layer)**:
+    - `index.html` e `styles.css`.
+    - Focada exclusivamente em fornecer a "casca" estrutural e a experiência visual (UX).
 
-- ✅ **26 questões interativas** sobre uso responsável da tecnologia
-- ✅ **Feedback imediato** com explicações detalhadas para cada resposta
-- ✅ **Sistema de pontuação** automático (1 ponto por acerto)
-- ✅ **Ranking (Leaderboard) Local** com as maiores pontuações salvas no navegador (via `localStorage`)
-- ✅ **Design UI/UX Premium** responsivo com transições e tipografia dinâmica (Glassmorphism e Google Fonts)
-- ✅ **Acessibilidade** com suporte a leitores de tela
-
-### Tecnologias Utilizadas
-
-Esta é uma aplicação **100% Frontend (Estática)**:
-- HTML5
-- CSS3 (Vanilla com Variáveis e Efeitos de Blur)
-- JavaScript (ES6+ Vanilla, persistência em localStorage)
-
-Não há dependências de backend ou banco de dados, o que facilita enormemente a hospedagem e reduz custos a zero.
+### B. Ciclo de Vida do Processamento de Dados (Data Lifespan)
+O fluxo de um dado no sistema segue etapas rigorosas de engenharia:
+1.  **Request**: O JS dispara uma requisição de baixo custo para o servidor.
+2.  **Validation**: Antes de renderizar, o JS valida se o JSON é um array válido para evitar erros de runtime.
+3.  **Hydration**: O DOM (Document Object Model) é "hidratado" dinamicamente. Criamos divs, botões e labels em tempo real usando `document.createElement`.
+4.  **Synchronization**: Os acertos são somados em uma variável de estado protegida no escopo do script, evitando manipulações simples via console.
 
 ---
 
-## 👤 Tutorial de Uso para o Usuário Final
+## 🏗️ 2. Guia Detalhado de Implementação (Passo a Passo)
 
-### Passo a Passo: Como Usar o Quiz
+A construção desta ferramenta seguiu um rigoroso processo de desenvolvimento ágil:
 
-#### 1. **Acessar o Quiz**
-Acesse o link fornecido pela equipe de TI (ex: uma página no GitHub Pages).
+### Passo 1: Design Visual e Experiência do Usuário (UX/UI)
+- **Glassmorphism**: Utilizamos `backdrop-filter: blur()` e cores semi-transparentes para criar uma interface leve e profissional que remete a sistemas modernos de alta tecnologia.
+- **Tipografia Dinâmica**: Importamos fontes via Google Fonts (`Inter` para leitura técnica e `Outfit` para títulos) para garantir elegância visual em qualquer dispositivo.
 
-#### 2. **Preencher Informações Iniciais**
-Ao abrir o quiz, você verá um formulário solicitando seu Nome e Setor. Clique em "Começar".
+### Passo 2: Desenvolvimento da Lógica de Navegação
+- Criamos um sistema de **Navegação Linear Segura**:
+    - O botão "Próxima" permanece desativado até que o usuário clique em "Verificar Respostas". 
+    - **O motivo técnico**: Forçar o usuário a ler a *Explicação* e a *Fonte* da resposta, garantindo o caráter educativo do quiz.
 
-#### 3. **Responder as Questões**
-O quiz apresenta **26 questões**. Selecione uma alternativa, clique em "Verificar Respostas", leia a explicação, e avance para a próxima.
+### Passo 3: Persistência Híbrida (Local + Cloud)
+- **Local Storage**: Usado para manter o nome e setor do usuário, permitindo que ele continue de onde parou caso a página recarregue.
+- **Firebase Firestore Integration**: Optamos por uma arquitetura *Serverless*. O quiz se comunica diretamente com o Firestore através de uma API segura, gravando os rankings globais sem a necessidade de um servidor backend próprio (Python/Node), o que reduz o custo de manutenção a zero.
 
-#### 4. **Visualizar Resultado Final**
-No final, aparecerá a pontuação total e sua classificação no Ranking Local do seu navegador. 
-
-#### 5. **Acessar o Manual**
-Para consultar informações detalhadas, clique no botão **"📘 Acessar Manual Completo"** no final do quiz.
-
----
-
-## 🚀 Tecnologias e Arquitetura
-
-O projeto foi totalmente refatorado para uma **arquitetura Serverless e Estática**, eliminando qualquer custo de servidor 100% gratuito.
-
-- **Frontend (Estático)**: 100% HTML, CSS Vanilla e JavaScript.
-- **Backend / Banco de Dados**: Firebase Firestore (BaaS - Backend as a Service).
-- **Hospedagem**: Projetado para rodar gratuitamente via **GitHub Pages**.
-
-### Vantagens da Nova Arquitetura
-1. **Ranking Global em Tempo Real**: Diferente da antiga versão em LocalStorage, todos os acessos agora gravam a pontuação na nuvem pública do Firebase, permitindo que todos os participantes vejam o Top 10 atualizado de qualquer computador.
-2. **Custo Zero**: Tanto o GitHub Pages quanto a cota gratuita mensal do Firebase Firestore atendem com grande folga à demanda do Quiz.
-3. **Facilidade de Deploy**: Basta realizar o *push* dos arquivos para a *branch* principal do repositório configurada no GitHub Pages. Sem Docker, sem Python, sem complicação.
+### Passo 4: Refatoração para Conteúdo Externo
+- Implementamos a Fetch API para o arquivo `questions.json`.
+- Adicionamos um **Tratamento de Erros Robusto**: Se o carregamento via JSON falhar (por exemplo, bloqueio de CORS local), a interface informa ao usuário os passos exatos para resolver (uso de servidor local).
 
 ---
 
-## 🚀 Como Executar e Hospedar
+## 📦 3. Manual de Instalação e Execução (Técnico)
 
-Como o projeto agora é **100% estático**, ele não requer Docker, Python ou bancos de dados. 
+### Passo a Passo para Desenvolvimento Local
 
-### Executando Localmente (Para Testes)
+Se você deseja testar ou modificar o código no seu computador pessoal, siga estas instruções:
 
-Você pode simplesmente abrir o arquivo `index.html` clicando duas vezes nele em qualquer navegador web, ou servir usando uma ferramenta simples, como:
+1.  **Estrutura de Arquivos**: Garanta que todos os arquivos estejam no mesmo diretório:
+    - `index.html`
+    - `script.js`
+    - `styles.css`
+    - `questions.json`
 
-**Com Python:**
-```bash
-python3 -m http.server 8000
-# Acesse: http://localhost:8000
-```
-
-**Com Node.js (se tiver npx):**
-```bash
-npx serve
-```
-
-### Hospedagem Gratuita (GitHub Pages, Vercel, Netlify)
-
-A aplicação está configurada e pronta para ser hospedada gratuitamente.
-
-**No GitHub Pages:**
-1. Faça o push de todo o repositório para o GitHub.
-2. Vá em **Settings > Pages**.
-3. Em *Source*, selecione a branch `main` e a pasta `/ (root)`.
-4. Salve. O site estará online em alguns minutos.
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-quiz.ti.github.io/
-├── index.html       # Página principal e do Quiz
-├── manual.html      # Página do Manual Coren-BA
-├── script.js        # Lógica do Quiz e Persistência Local
-├── styles.css       # Estilos globais premium e animações
-└── image/           # Imagens e logotipos (ex: logo do Coren-BA)
-```
+2.  **Executando no Navegador**:
+    - **⚠️ Alerta Crítico de Segurança (CORS)**: Navegadores modernos impedem o carregamento de arquivos JSON locais quando você abre o HTML simplesmente clicando duas vezes nele.
+    - **A Solução**: Você precisa "servir" os arquivos através de um servidor web local.
+    
+3.  **Como iniciar um servidor local rapidamente**:
+    - **Via VS Code**: Instale a extensão `Live Server`. Abra o `index.html`, clique com o botão direito e selecione `Open with Live Server`.
+    - **Via Terminal (Python)**:
+      ```bash
+      python3 -m http.server 8080
+      ```
+    - **Via Terminal (Node.js)**:
+      ```bash
+      npx serve .
+      ```
+    - Após iniciar, acesse `http://localhost:8080`.
 
 ---
 
-## 📝 Licença e Créditos
+## 🔌 4. Dependências e Integrações
 
-Este projeto foi desenvolvido para o **Coren-BA** (Conselho Regional de Enfermagem da Bahia).
-Refatorado para arquitetura Estática Serverless.
+Para que o projeto seja ultra-leve, evitamos o uso de frameworks pesados (React/Angular). Usamos apenas o necessário:
+
+- **Firebase SDK (v9+)**: Integrado via CDN para gerenciamento do Leaderboard global.
+- **Firestore DB**: Banco de dados NoSQL utilizado para salvar coleções de pontuações.
+- **Google Fonts API**: Fornece as fontes de alta qualidade.
+- **Vanilla JS**: 100% de performance nativa, sem sobrecarga de biblioteca externa.
+
+---
+
+## 🚀 5. Processo de Deploy (GitHub Pages)
+
+O deploy é automatizado e 100% gratuito:
+
+1.  Crie um repositório no GitHub.
+2.  Suba os arquivos para a branch `main`.
+3.  Em `Settings > Pages`, escolha a branch `main` e a pasta `/(root)`.
+4.  O GitHub Actions gerará o build automaticamente e o link estará disponível em minutos.
+
+---
+
+## 🛠️ 6. Guia para Futura Manutenção
+
+Deseja adicionar novas perguntas?
+- **Passo 1**: Abra o arquivo `questions.json`.
+- **Passo 2**: Copie um bloco existente de `{ }`.
+- **Passo 3**: Altere os textos. O sistema detectará automaticamente a nova pergunta e atualizará o contador "Pergunta X de 26" sozinho.
+
+---
+**Documentação mantida pela equipe de TI do Coren-BA** 🏛️
+*"A tecnologia ao serviço da enfermagem através de boas práticas e segurança."*
